@@ -1,0 +1,19 @@
+{
+	"files": [],
+	"references": [
+		{ "path": "./tsconfig.app.json" },
+		{ "path": "./tsconfig.node.json" }
+	],
+
+	"compilerOptions": {
+		"baseUrl": ".",
+		"strictPropertyInitialization": false,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"paths": {
+			"@/*": ["./src/*"],
+			"@modules/*": ["./src/modules/*"],
+			"@shared/*": ["./src/modules/shared/*"]
+		}
+	}
+}
