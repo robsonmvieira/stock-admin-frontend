@@ -1,1 +1,1 @@
-export * from "./Category"
+export * from "./category.entity.ts"

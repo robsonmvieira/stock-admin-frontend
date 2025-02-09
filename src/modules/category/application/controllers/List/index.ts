@@ -1,1 +1,1 @@
-export * from "./ListController"
+export * from "./ListCategoriesController.tsx"
