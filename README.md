@@ -1,50 +1,108 @@
-# React + TypeScript + Vite
+# 🛍️ Admin E-commerce
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto é um **painel administrativo** para um e-commerce, permitindo a gestão completa de produtos, categorias, vendas e usuários com controle de acesso baseado em níveis. Administradores podem visualizar relatórios, gerenciar pedidos e configurar permissões de acesso.
 
-Currently, two official plugins are available:
+## 🚀 Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+✅ Controle de acesso baseado em níveis de usuário  
+✅ Gerenciamento de produtos, categorias e pedidos  
+✅ Dashboard com estatísticas e gráficos de vendas  
+✅ Upload e gerenciamento de arquivos  
+✅ Busca avançada e filtros para otimizar a navegação
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 🛠️ Tecnologias utilizadas
 
-- Configure the top-level `parserOptions` property like this:
+Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### 🔹 **Frontend**
+- [React](https://react.dev/) - Biblioteca para construção da interface do usuário.
+- [React Router](https://reactrouter.com/) - Gerenciamento de rotas no React.
+- [React Hook Form](https://react-hook-form.com/) - Gerenciamento eficiente de formulários.
+- [TanStack Query](https://tanstack.com/query) - Gerenciamento de requisições assíncronas.
+
+### 🎨 **UI e Estilização**
+- [TailwindCSS](https://tailwindcss.com/) - Framework para estilização via classes utilitárias.
+- [Radix UI](https://www.radix-ui.com/) - Componentes acessíveis e estilizados para React.
+- [Lucide React](https://lucide.dev/) - Ícones otimizados para React.
+
+### 📊 **Gráficos e Dados**
+- [Recharts](https://recharts.org/en-US/) - Biblioteca de gráficos baseada no React.
+- [Match-sorter](https://www.npmjs.com/package/match-sorter) - Algoritmo de ordenação inteligente.
+
+### 📦 **Gerenciamento de Estado e APIs**
+- [Inversify](https://inversify.io/) - Injeção de dependências para TypeScript.
+- [Ky](https://github.com/sindresorhus/ky) - Cliente HTTP minimalista baseado em `fetch`.
+- [LocalForage](https://localforage.github.io/localForage/) - Armazenamento de dados no navegador.
+
+### ✅ **Testes e Qualidade de Código**
+- [Vitest](https://vitest.dev/) - Framework de testes para Vite e React.
+- [Testing Library](https://testing-library.com/docs/react-testing-library/intro/) - Testes de interface do usuário.
+- [ESLint](https://eslint.org/) - Ferramenta para análise de código.
+- [Biome](https://biomejs.dev/) - Ferramenta para formatação e linting de código.
+
+---
+
+## 🛠️ **Como rodar o projeto localmente?**
+
+### 📌 **Pré-requisitos**
+- [Node.js](https://nodejs.org/) (Versão recomendada: `18.19.0 ou superior`)
+- [npm](https://www.npmjs.com/) ou [pnpm](https://pnpm.io/) ou [yarn](https://yarnpkg.com/)
+
+### 🚀 **Passos para rodar localmente**
+
+1️⃣ **Clone o repositório**
+```sh
+   git clone https://github.com/seu-usuario/admin-ecommerce.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+2️⃣ **Navegue até a pasta**
+```sh
+   cd admin-ecommerce
 ```
+
+3️⃣ **Instale as dependências**
+```sh
+   npm install
+```
+
+4️⃣ **Rode o projeto**
+```sh
+   npm start
+```
+
+5️⃣ **Acesse o projeto no navegador**
+```sh
+   http://localhost:5173
+```
+
+### 📦 **Build de Produção**
+```sh
+   npm run build
+```
+🛠 Rodando os testes
+```sh
+   npm test
+```
+
+📊 Rodando cobertura de testes
+```sh
+   npm run coverage
+```
+
+📄 Licença
+
+Este projeto é privado, não sendo permitido seu uso ou distribuição sem autorização.
+
+🎯 Contribuições
+
+Se deseja contribuir com este projeto, entre em contato com o time responsável.
+
+📩 Contato
+
+- 📧 Email: robsonmvieira@gmail.com
+- 🌐 [Linkedin](https://www.linkedin.com/in/robsonmaia/) Robson Maia
+
+
+
