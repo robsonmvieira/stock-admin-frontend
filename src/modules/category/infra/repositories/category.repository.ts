@@ -16,7 +16,7 @@ export class CategoryRepository implements ICategoryRepository {
 	async delete(category: string): Promise<void> {
 		await this.repo.delete(`categories/${category}`)
 	}
-	async find(categoryId: string): Promise<BaseResponse<CategoryEntity>> {
+	async findById(categoryId: string): Promise<BaseResponse<CategoryEntity>> {
 		return await this.repo.get(`categories/${categoryId}`)
 	}
 	async list(): Promise<BaseResponse<CategoryEntity[]>> {

@@ -5,6 +5,6 @@ export interface ICategoryRepository {
 	save(category: CategoryEntity): Promise<void>
 	update(category: CategoryEntity): Promise<void>
 	delete(categoryId: string): Promise<void>
-	find(categoryId: string): Promise<BaseResponse<CategoryEntity>>
+	findById(categoryId: string): Promise<BaseResponse<CategoryEntity>>
 	list(): Promise<BaseResponse<CategoryEntity[]>>
 }
