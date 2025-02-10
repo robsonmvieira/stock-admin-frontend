@@ -95,7 +95,7 @@ describe("ListCategoryController", () => {
 		// Clicamos no botão "Editar"
 		fireEvent.click(editButton)
 
-		// Esperamos que o método `onEdit` seja chamado
+		// Esperamos que a função `onEdit` seja chamado
 		await waitFor(() => {
 			expect(consoleSpy).toHaveBeenCalledTimes(1)
 			expect(consoleSpy).toHaveBeenCalledWith("Edit", expect.anything())
