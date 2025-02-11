@@ -16,7 +16,9 @@ export function useListCategory() {
 		queryFn: async () => {
 			const response = await listCategoryUseCase.execute()
 			return {
-				categoryOptions: buildCategoryOptions(response.data),
+				categoryOptions: buildCategoryOptions(
+					response.data as CategoryEntity[]
+				),
 				response
 			}
 		},

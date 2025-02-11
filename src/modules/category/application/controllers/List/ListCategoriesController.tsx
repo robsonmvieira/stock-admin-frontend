@@ -3,24 +3,35 @@ import {
 	type CategoryColumnsType,
 	useCategoryColumns
 } from "@modules/category/application/controllers/List/Components/table/"
-import { useListCategory } from "@modules/category/application/hooks"
+import {
+	useFeaturedCategory,
+	useListCategory
+} from "@modules/category/application/hooks"
 
 import { Button } from "@/components/ui/button"
+import { useToast } from "@/hooks/use-toast"
+import { cn } from "@/lib/utils.ts"
 import { CategoryMapper } from "@modules/category/application/mappers"
 import { DataTable } from "@modules/dashboard/application/controllers/Home/components"
-import { DeleteConfirmationModal } from "@shared/application/components/Dialogs/DeleteConfirmationModal/DeleteConfirmationModal.tsx"
-import { useCallback, useState } from "react"
+import { DeleteConfirmationModal } from "@shared/application/components/Dialogs/DeleteConfirmationModal/DeleteConfirmationModal"
+import { useCallback, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-
 export function ListCategoriesController() {
 	const navigate = useNavigate()
 	const { data: categoryList } = useListCategory()
+	const {
+		mutate: featureCategoryHandler, // função para chamar a mutation
+		//data: mutationData, // último resultado retornado pela mutation
+		error: featuredCategoryErrorHandler // erro retornado pela mutation
+	} = useFeaturedCategory()
+
+	const { toast } = useToast()
 	const [modalOpen, setModalOpen] = useState(false)
 
 	const [categoryToDelete, setCategoryToDelete] =
 		useState<CategoryColumnsType | null>(null)
 
-	const categories = categoryList?.response?.data
+	const categories = categoryList?.response?.data as CategoryColumnsType[]
 	const onEdit = useCallback((item: CategoryColumnsType) => {
 		console.log("Edit", item)
 	}, [])
@@ -46,9 +57,28 @@ export function ListCategoriesController() {
 			if (!categoryFound) return
 			const category = CategoryMapper.fromApiToDomain(categoryFound)
 			category.updateFeaturedCategory()
+			// biome-ignore lint/style/noNonNullAssertion: <explanation>
+			featureCategoryHandler(category.id!)
 		},
-		[categories]
+		[categories, featureCategoryHandler]
 	)
+
+	const errorNotification = useCallback(() => {
+		toast({
+			className: cn(
+				"top-0 right-0 flex fixed md:max-w-[420px] md:top-4 md:right-4 bg-red-400 border-none"
+			),
+			variant: "destructive",
+			title: "error",
+			description: "Some error"
+		})
+	}, [toast])
+
+	useEffect(() => {
+		if (featuredCategoryErrorHandler) {
+			errorNotification()
+		}
+	}, [featuredCategoryErrorHandler, errorNotification])
 
 	const onAdd = useCallback(() => {
 		navigate("/categories/create")

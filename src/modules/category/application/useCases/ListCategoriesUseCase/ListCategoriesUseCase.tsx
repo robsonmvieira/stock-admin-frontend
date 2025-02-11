@@ -9,13 +9,13 @@ import { inject, injectable } from "inversify"
 export class ListCategoriesUseCase {
 	@inject(Types.ICategoryRepository)
 	private categoryRepository: ICategoryRepository
-	async execute(): Promise<BaseResponse<CategoryEntity>> {
+	async execute(): Promise<BaseResponse<CategoryEntity[]>> {
 		const response = await this.categoryRepository.list()
 		const baseResponse = new BaseResponse()
-		baseResponse.createdAt = response.createdAt
-		baseResponse.hasError = response.hasError
-		baseResponse.totalItems = response.data.length
-		baseResponse.data = response.data
-		return baseResponse as BaseResponse<CategoryEntity>
+		baseResponse.createdAt = response?.createdAt ?? new Date()
+		baseResponse.hasError = response?.hasError ?? false
+		baseResponse.totalItems = response?.data?.length ?? 0
+		baseResponse.data = response?.data ?? []
+		return baseResponse as BaseResponse<CategoryEntity[]>
 	}
 }
