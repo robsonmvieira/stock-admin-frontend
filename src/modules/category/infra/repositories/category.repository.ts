@@ -25,4 +25,10 @@ export class CategoryRepository implements ICategoryRepository {
 	async save(category: CategoryEntity): Promise<void> {
 		await this.repo.post("categories", category)
 	}
+
+	async featuredCategory(categoryId: string): Promise<BaseResponse<void>> {
+		return await this.repo.patch(`categories/${categoryId}/featured`, {
+			categoryId
+		})
+	}
 }
