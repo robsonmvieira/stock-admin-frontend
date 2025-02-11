@@ -8,7 +8,8 @@ const mockCategoryRepository: ICategoryRepository = {
 	update: vi.fn(),
 	delete: vi.fn(),
 	findById: vi.fn(),
-	list: vi.fn()
+	list: vi.fn(),
+	featuredCategory: vi.fn()
 }
 
 describe("CreateCategoryUseCase", () => {
