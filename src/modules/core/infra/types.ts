@@ -4,6 +4,7 @@ const Types = {
 	CreateCategoryUseCase: Symbol.for("CreateCategoryUseCase"),
 	UpdateCategoryUseCase: Symbol.for("UpdateCategoryUseCase"),
 	DeleteCategoryUseCase: Symbol.for("DeleteCategoryUseCase"),
-	ListCategoryUseCase: Symbol.for("ListCategoryUseCase")
+	ListCategoryUseCase: Symbol.for("ListCategoryUseCase"),
+	FeaturedCategoryUseCase: Symbol.for("FeaturedCategoryUseCase")
 }
 export { Types }
