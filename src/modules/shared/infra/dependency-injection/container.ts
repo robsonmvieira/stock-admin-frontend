@@ -2,6 +2,7 @@ import { Container } from "inversify"
 
 import {
 	CreateCategoryUseCase,
+	FeaturedCategoryUseCase,
 	ListCategoriesUseCase
 } from "@modules/category/application/useCases"
 import type { ICategoryRepository } from "@modules/category/domain/repositories"
@@ -21,8 +22,14 @@ container
 	.bind<ICategoryRepository>(Types.ICategoryRepository)
 	.to(CategoryRepository)
 
-container.bind<CreateCategoryUseCase>(CreateCategoryUseCase).toSelf()
+container
+	.bind<CreateCategoryUseCase>(Types.CreateCategoryUseCase)
+	.to(CreateCategoryUseCase)
 container
 	.bind<ListCategoriesUseCase>(Types.ListCategoryUseCase)
 	.to(ListCategoriesUseCase)
+
+container
+	.bind<FeaturedCategoryUseCase>(Types.FeaturedCategoryUseCase)
+	.to(FeaturedCategoryUseCase)
 export { container }
