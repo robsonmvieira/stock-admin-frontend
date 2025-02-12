@@ -9,23 +9,23 @@ import {
 } from "@modules/category/application/hooks"
 
 import { Button } from "@/components/ui/button"
-import { useToast } from "@/hooks/use-toast"
-import { cn } from "@/lib/utils.ts"
+
 import { CategoryMapper } from "@modules/category/application/mappers"
 import { DataTable } from "@modules/dashboard/application/controllers/Home/components"
 import { DeleteConfirmationModal } from "@shared/application/components/Dialogs/DeleteConfirmationModal/DeleteConfirmationModal"
+import { useToastFeedbacks } from "@shared/application/components/Dialogs/Toasts"
 import { useCallback, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 export function ListCategoriesController() {
 	const navigate = useNavigate()
 	const { data: categoryList } = useListCategory()
+	const { errorNotification } = useToastFeedbacks()
 	const {
 		mutate: featureCategoryHandler, // função para chamar a mutation
 		//data: mutationData, // último resultado retornado pela mutation
 		error: featuredCategoryErrorHandler // erro retornado pela mutation
 	} = useFeaturedCategory()
 
-	const { toast } = useToast()
 	const [modalOpen, setModalOpen] = useState(false)
 
 	const [categoryToDelete, setCategoryToDelete] =
@@ -63,20 +63,12 @@ export function ListCategoriesController() {
 		[categories, featureCategoryHandler]
 	)
 
-	const errorNotification = useCallback(() => {
-		toast({
-			className: cn(
-				"top-0 right-0 flex fixed md:max-w-[420px] md:top-4 md:right-4 bg-red-400 border-none"
-			),
-			variant: "destructive",
-			title: "error",
-			description: "Some error"
-		})
-	}, [toast])
-
 	useEffect(() => {
 		if (featuredCategoryErrorHandler) {
-			errorNotification()
+			errorNotification({
+				title: "error",
+				description: "Error to update featured category"
+			})
 		}
 	}, [featuredCategoryErrorHandler, errorNotification])
 
