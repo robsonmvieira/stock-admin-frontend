@@ -4,6 +4,7 @@ import {
 	useCategoryColumns
 } from "@modules/category/application/controllers/List/Components/table/"
 import {
+	useDeleteCategory,
 	useFeaturedCategory,
 	useListCategory
 } from "@modules/category/application/hooks"
@@ -26,6 +27,9 @@ export function ListCategoriesController() {
 		error: featuredCategoryErrorHandler // erro retornado pela mutation
 	} = useFeaturedCategory()
 
+	const { mutate: deleteCategoryHandler, error: deleteCategoryError } =
+		useDeleteCategory()
+
 	const [modalOpen, setModalOpen] = useState(false)
 
 	const [categoryToDelete, setCategoryToDelete] =
@@ -46,10 +50,11 @@ export function ListCategoriesController() {
 				// call delete method
 				console.log("Delete this item", item)
 			}
-			setModalOpen(true)
-			console.log("Delete", item)
+			// biome-ignore lint/style/noNonNullAssertion: <explanation>
+			deleteCategoryHandler(category.id!)
+			setModalOpen(false)
 		},
-		[categories]
+		[categories, deleteCategoryHandler]
 	)
 	const onFeatured = useCallback(
 		(item: CategoryColumnsType) => {
@@ -71,6 +76,16 @@ export function ListCategoriesController() {
 			})
 		}
 	}, [featuredCategoryErrorHandler, errorNotification])
+
+	useEffect(() => {
+		if (deleteCategoryError) {
+			console.log(deleteCategoryError)
+			errorNotification({
+				title: "error",
+				description: "Error to delete category"
+			})
+		}
+	}, [deleteCategoryError, errorNotification])
 
 	const onAdd = useCallback(() => {
 		navigate("/categories/create")

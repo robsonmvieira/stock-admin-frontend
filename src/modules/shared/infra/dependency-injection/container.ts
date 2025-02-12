@@ -2,6 +2,7 @@ import { Container } from "inversify"
 
 import {
 	CreateCategoryUseCase,
+	DeleteCategoryUseCase,
 	FeaturedCategoryUseCase,
 	ListCategoriesUseCase
 } from "@modules/category/application/useCases"
@@ -32,4 +33,8 @@ container
 container
 	.bind<FeaturedCategoryUseCase>(Types.FeaturedCategoryUseCase)
 	.to(FeaturedCategoryUseCase)
+
+container
+	.bind<DeleteCategoryUseCase>(Types.DeleteCategoryUseCase)
+	.to(DeleteCategoryUseCase)
 export { container }
